@@ -1,4 +1,4 @@
-#include<Iostream>
+#include<iostream>
 #include<sstream>
 #include<string>
 
@@ -20,14 +20,17 @@ int main() {
 	int x = 0;
 	int y = 0;
 	double z = 0;
-	size_t nameLength;
+	//string b = 0;
+
+
 	//이름 넣으면 에러가 뜨는것을 진행
 	for (i = 0; i < a; i++) {
-		getline(cin, attName[i]);
-		//nameLength = attName[i].length();
-		//nameLength = strlen(attName);
+		
 		//cout << attName[i] << endl;
-		if (attName[i] = 0) {
+		
+
+		/*
+		if (strlen(b) = '0') {
 			cout << attName[i] << endl;
 			return error;
 		}
@@ -41,24 +44,40 @@ int main() {
 
 			cout << attName[i] << "   " << z << endl;
 		}
-	}
+	}*/
 
-	/*
-	getline(cin, attName[i]);
-	getline(cin, checkInDay[i]);
-	getline(cin, checkOutDay[i]);
-	x = dayToIndex(checkInDay[i]);
-	y = dayToIndex(checkOutDay[i]);
-	z = calculateCostOfRoom(roomRate, x, y);
-	cout << z << endl;
-	*/
-	/*
-	for (i = 0; i < a; i++) {
-		cout << attName[i]<< " check in day " << checkInDay[i] << endl;
-	}
 
-	*/
-	return 0;
+		getline(cin, attName[i]);
+		getline(cin, checkInDay[i]);
+		getline(cin, checkOutDay[i]);
+		istringstream x(attName[i]);
+		istringstream y(checkInDay[i]);
+		istringstream z(checkOutDay[i]);
+		x >> attName[i];
+		y >> checkInDay[i];
+		z >> checkOutDay[i];
+
+		//x = dayToIndex(checkInDay[i]);
+		
+		cout << "--------------" << attName[i] << endl;
+		//y = dayToIndex(checkOutDay[i]);
+		cout << "----++++++++++++---" << checkInDay[i] << endl;
+		//z = calculateCostOfRoom(roomRate, x, y); 
+		
+		cout << checkOutDay[i] << endl;
+		
+
+
+		/*
+		for (i = 0; i < a; i++) {
+			cout << attName[i]<< " check in day " << checkInDay[i] << endl;
+		}
+
+		*/
+
+	}
+		return 0;
+	
 }
 
 int dayToIndex(string day) {
