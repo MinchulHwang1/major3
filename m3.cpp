@@ -26,21 +26,23 @@ int main() {
 
 
 		getline(cin, attName[i]); //이름에 배열 인자를 넣었다.
-		if (attName[i] == "") {   //If there is no name in the attName array
-			error;
-		}
-		else {
+		if (attName[i] != "") {   //If there is no name in the attName array
 			getline(cin, checkInDay[i]);
 			getline(cin, checkOutDay[i]);
 			x = dayToIndex(checkInDay[i]);
 			y = dayToIndex(checkOutDay[i]);
 			z = calculateCostOfRoom(roomRate, x, y);
-
-			cout << attName[i] << " attendancd name " << endl;
-			cout << "************** " << x << endl;
-			cout << "--/*-/*-/*-/* " << y << endl;
-			cout << "calculated price : " << z << endl;
 		}
+		else {
+			error;
+		}
+	}
+
+	for (i = 0; i < a; i++) {
+		cout << attName[i] << " attendancd name " << endl;
+		cout << "************** " << x << endl;
+		cout << "--/*-/*-/*-/* " << y << endl;
+		cout << "calculated price : " << z << endl;
 	}
 
 
