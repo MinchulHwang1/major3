@@ -21,11 +21,15 @@ int main() {
 	int y = 0;
 	double z = 0;
 
-
+	//이름 넣으면 에러가 뜨는것을 진행
 	for (i = 0; i < a; i++) {
 
 
 		getline(cin, attName[i]); //이름에 배열 인자를 넣었다.
+
+		//왜 attname 의 배열안에 들어가는 것이 없을까?
+
+
 		if (attName[i] != "") {   //If there is no name in the attName array
 			getline(cin, checkInDay[i]);
 			getline(cin, checkOutDay[i]);
@@ -40,17 +44,17 @@ int main() {
 
 	for (i = 0; i < a; i++) {
 		cout << attName[i] << " attendancd name " << endl;
-		cout << "************** " << x << endl;
-		cout << "--/*-/*-/*-/* " << y << endl;
+		cout << "************** " << checkInDay[i] << endl;
+		cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
 		cout << "calculated price : " << z << endl;
 	}
-
+	
 
 
 
 	//under code is safe. not error without attName[i]
 	/*
-	//이름 넣으면 에러가 뜨는것을 진행
+	
 	for (i = 0; i < a; i++) {
 		
 		
