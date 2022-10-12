@@ -17,41 +17,83 @@ int main() {
 	string attName[4] = { };
 	string checkInDay[4];
 	string checkOutDay[4];
-	int x = 0;
-	int y = 0;
+	int ciD = 0;
+	int coD = 0;
 	double z = 0;
-	string b;
+	string arName;
+	double totalPrice = 0;
 
 
-	//이름 넣으면 에러가 뜨는것을 진행
+	//이름 넣으면 에러가 뜨는것을 진행 -- 완료
+	//배열에 마지막 것만 들어가는 것을 해결해야함
+
+
 	for (i = 0; i < a; i++) {
 
-
-		getline(cin, attName[i]); //이름에 배열 인자를 넣었다.
-
-		                          //왜 attname 의 배열안에 들어가는 것이 없을까?
+		getline(cin, attName[i]); 
 		
-		b = attName[i];
-		if (b != "") {   //If there is no name in the attName array  
-
+		arName = attName[i];
+		if (arName != "") {   //If there is no name in the attName array  
 			getline(cin, checkInDay[i]);
 			getline(cin, checkOutDay[i]);
-			x = dayToIndex(checkInDay[i]);
-			y = dayToIndex(checkOutDay[i]);
-			z = calculateCostOfRoom(roomRate, x, y);
+			ciD = dayToIndex(checkInDay[i]);
+			coD = dayToIndex(checkOutDay[i]);
+			z = calculateCostOfRoom(roomRate, ciD, coD);
 		}
 		else {
+			cout << "Error! Input next Name" << endl;
 			error;
 		}
 	}
 
+	//에러 발생 메세지 출력
+
+	for (i = 0; i < a; i++) {
+
+		arName = attName[i];
+		ciD = dayToIndex(checkInDay[i]);
+		coD = dayToIndex(checkOutDay[i]);
+
+		if (arName != "") {
+			if (ciD != -1) {
+				if (coD != -1) {
+					cout << attName[i] << " attendancd name " << endl;
+					cout << "************** " << checkInDay[i] << endl;
+					cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
+					cout << "calculated price : " << z << endl;
+					totalPrice += z;
+				}
+				else {
+					cout << "Error!" << endl;
+				}
+			}
+			else {
+				cout << "Error!" << endl;
+			}
+		}
+		else {
+			cout << "Error!" << endl;
+		}
+		/*
+		cout << attName[i] << " attendancd name " << endl;
+		cout << "************** " << checkInDay[i] << endl;
+		cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
+		cout << "calculated price : " << z << endl;
+		*/
+	}
+
+	cout << "Total Price : " << totalPrice << endl;
+
+	/*
 	for (i = 0; i < a; i++) {
 		cout << attName[i] << " attendancd name " << endl;
 		cout << "************** " << checkInDay[i] << endl;
 		cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
 		cout << "calculated price : " << z << endl;
 	}
-	
+	*/
+
+
 
 
 
