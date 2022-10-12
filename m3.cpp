@@ -20,6 +20,8 @@ int main() {
 	int x = 0;
 	int y = 0;
 	double z = 0;
+	string b;
+
 
 	//이름 넣으면 에러가 뜨는것을 진행
 	for (i = 0; i < a; i++) {
@@ -27,10 +29,11 @@ int main() {
 
 		getline(cin, attName[i]); //이름에 배열 인자를 넣었다.
 
-		//왜 attname 의 배열안에 들어가는 것이 없을까?
+		                          //왜 attname 의 배열안에 들어가는 것이 없을까?
+		
+		b = attName[i];
+		if (b != "") {   //If there is no name in the attName array  
 
-
-		if (attName[i] != "") {   //If there is no name in the attName array
 			getline(cin, checkInDay[i]);
 			getline(cin, checkOutDay[i]);
 			x = dayToIndex(checkInDay[i]);
