@@ -27,54 +27,21 @@ int main() {
 	for (i = 0; i < a; i++) {
 		
 		//cout << attName[i] << endl;
-		
-
-		/*
-		if (strlen(b) = '0') {
-			cout << attName[i] << endl;
-			return error;
-		}
-		else {
-
-			getline(cin, checkInDay[i]);
-			getline(cin, checkOutDay[i]);
-			x = dayToIndex(checkInDay[i]);
-			y = dayToIndex(checkOutDay[i]);
-			z = calculateCostOfRoom(roomRate, x, y);
-
-			cout << attName[i] << "   " << z << endl;
-		}
-	}*/
-
-
 		getline(cin, attName[i]);
 		getline(cin, checkInDay[i]);
 		getline(cin, checkOutDay[i]);
-		istringstream x(attName[i]);
-		istringstream y(checkInDay[i]);
-		istringstream z(checkOutDay[i]);
-		x >> attName[i];
-		y >> checkInDay[i];
-		z >> checkOutDay[i];
+		x = dayToIndex(checkInDay[i]);
+		y = dayToIndex(checkOutDay[i]);
+		z = calculateCostOfRoom(roomRate, x, y);
 
-		//x = dayToIndex(checkInDay[i]);
-		
-		cout << "--------------" << attName[i] << endl;
+		cout << attName[i] << "   " << endl;
+
+		cout << "--------------" << x << endl;
 		//y = dayToIndex(checkOutDay[i]);
-		cout << "----++++++++++++---" << checkInDay[i] << endl;
+		cout << "----++++++++++++---" << y << endl;
 		//z = calculateCostOfRoom(roomRate, x, y); 
-		
-		cout << checkOutDay[i] << endl;
-		
 
-
-		/*
-		for (i = 0; i < a; i++) {
-			cout << attName[i]<< " check in day " << checkInDay[i] << endl;
-		}
-
-		*/
-
+		cout << z << endl;
 	}
 		return 0;
 	
