@@ -13,7 +13,7 @@ const int error = -1;
 int main() {
 	const double roomRate[6] = { 127.50, 128.25, 130.50, 150, 150, 162.50 };
 	int i = 0;
-	int a = 4;
+	int a = 2;
 	string attName[4] = { };
 	string checkInDay[4];
 	string checkOutDay[4];
@@ -24,12 +24,11 @@ int main() {
 	double totalPrice = 0;
 
 
-	//이름 넣으면 에러가 뜨는것을 진행 -- 완료
-	//배열에 마지막 것만 들어가는 것을 해결해야함 -- 완료
 	//에러값을 반환할때 0으로 반환하여 error가 뜨게해야함.
+	//에러 값을 반환할때 값으로 반환하는 것을 해야함(돈 계산)
 	//계산값을 변경해야함
 
-
+	/*
 	for (i = 0; i < a; i++) {
 
 		getline(cin, attName[i]); 
@@ -54,77 +53,59 @@ int main() {
 			error;
 		}
 	}
+	*/
+
 
 	for (i = 0; i < a; i++) {
-		
+		cout << "Insert Attendee's name : ";
+		getline(cin, attName[i]);
+
 		arName = attName[i];
-		ciD = dayToIndex(checkInDay[i]);
-		coD = dayToIndex(checkOutDay[i]);
-		calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
-		
-		if (ciD != -1) {
-			if (coD != -1) {
-				/*
-				cout << attName[i] << " attendancd name " << endl;
-				cout << i << "    ************** " << checkInDay[i] << endl;
-				cout << i << "    --/*-/*-/*-/* " << checkOutDay[i] << endl;
-				cout << "calculated price : " << calculatedPrice << endl;
-				*/
-				totalPrice += calculatedPrice;
+		if (arName != "") {   //If there is no name in the attName array  
+			cout << "Valid day : sun, mon, tue, wed, thu, fri, sat" << endl;
+
+			cout << "Insert Check-In Day : ";
+			getline(cin, checkInDay[i]);
+			ciD = dayToIndex(checkInDay[i]);
+
+			if (ciD != -1) {
+				cout << "Insert Check-Out Day : ";
+				getline(cin, checkOutDay[i]);
+				coD = dayToIndex(checkOutDay[i]);
+				if (coD != -1) {
+					calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
+					cout << "Attendee name is : " << attName[i] << endl;
+					cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
+					cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
+					cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
+					cout << endl;
+				}
+				else {
+					cout << "Error!" << endl;
+				}
 			}
 			else {
-				cout << "Error!" << endl;
+				cout << "Error : You insert wrong Check-In day" << endl;
 			}
+		
+			//calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
+			/*
+			cout << "Attendee name is : " << attName[i] << endl;
+			cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
+			cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
+			cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
+			cout << endl;
+			*/
 		}
 		else {
-			cout << "Error!" << endl;
-		
+			cout << "Error! Input next Name" << endl;
+			error;
 		}
-		
-
-		/*
-		cout << attName[i] << " attendancd name " << endl;
-		cout << "************** " << checkInDay[i] << endl;
-		cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
-		cout << "calculated price : " << z << endl;
-		*/
-		
 	}
 
 	cout << "Total Price : " << totalPrice << endl;
 
-	/*
-	for (i = 0; i < a; i++) {
-		cout << attName[i] << " attendancd name " << endl;
-		cout << "************** " << checkInDay[i] << endl;
-		cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
-		cout << "calculated price : " << z << endl;
-	}
-	*/
-
-
-
-
-
-	//under code is safe. not error without attName[i]
-	/*
-	
-	for (i = 0; i < a; i++) {
-		
-		
-		getline(cin, attName[i]);
-		getline(cin, checkInDay[i]);
-		getline(cin, checkOutDay[i]);
-		x = dayToIndex(checkInDay[i]);
-		y = dayToIndex(checkOutDay[i]);
-		z = calculateCostOfRoom(roomRate, x, y);
-
-		cout << attName[i] << " attendancd name " << endl;
-		cout << "************** " << x << endl;
-		cout << "--/*-/*-/*-/* " << y << endl;
-		cout << "calculated price : " << z << endl;
-	}*/
-		return 0;
+	return 0;
 	
 }
 
