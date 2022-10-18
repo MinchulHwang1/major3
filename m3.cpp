@@ -13,19 +13,21 @@ const int error = -1;
 int main() {
 	const double roomRate[6] = { 127.50, 128.25, 130.50, 150, 150, 162.50 };
 	int i = 0;
-	int a = 2;
+	int a = 4;
 	string attName[4] = { };
 	string checkInDay[4];
 	string checkOutDay[4];
 	int ciD = 0;
 	int coD = 0;
-	double z = 0;
+	double calculatedPrice = 0;
 	string arName;
 	double totalPrice = 0;
 
 
 	//이름 넣으면 에러가 뜨는것을 진행 -- 완료
-	//배열에 마지막 것만 들어가는 것을 해결해야함
+	//배열에 마지막 것만 들어가는 것을 해결해야함 -- 완료
+	//에러값을 반환할때 0으로 반환하여 error가 뜨게해야함.
+	//계산값을 변경해야함
 
 
 	for (i = 0; i < a; i++) {
@@ -38,7 +40,14 @@ int main() {
 			getline(cin, checkOutDay[i]);
 			ciD = dayToIndex(checkInDay[i]);
 			coD = dayToIndex(checkOutDay[i]);
-			z = calculateCostOfRoom(roomRate, ciD, coD);
+			calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
+		
+			cout << "Attendee name is : " <<  attName[i] << endl;
+			cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
+			cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
+			cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
+			cout << endl;
+			
 		}
 		else {
 			cout << "Error! Input next Name" << endl;
@@ -46,26 +55,22 @@ int main() {
 		}
 	}
 
-	//에러 발생 메세지 출력
-
 	for (i = 0; i < a; i++) {
-
+		
 		arName = attName[i];
 		ciD = dayToIndex(checkInDay[i]);
 		coD = dayToIndex(checkOutDay[i]);
-
-		if (arName != "") {
-			if (ciD != -1) {
-				if (coD != -1) {
-					cout << attName[i] << " attendancd name " << endl;
-					cout << "************** " << checkInDay[i] << endl;
-					cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
-					cout << "calculated price : " << z << endl;
-					totalPrice += z;
-				}
-				else {
-					cout << "Error!" << endl;
-				}
+		calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
+		
+		if (ciD != -1) {
+			if (coD != -1) {
+				/*
+				cout << attName[i] << " attendancd name " << endl;
+				cout << i << "    ************** " << checkInDay[i] << endl;
+				cout << i << "    --/*-/*-/*-/* " << checkOutDay[i] << endl;
+				cout << "calculated price : " << calculatedPrice << endl;
+				*/
+				totalPrice += calculatedPrice;
 			}
 			else {
 				cout << "Error!" << endl;
@@ -73,13 +78,17 @@ int main() {
 		}
 		else {
 			cout << "Error!" << endl;
+		
 		}
+		
+
 		/*
 		cout << attName[i] << " attendancd name " << endl;
 		cout << "************** " << checkInDay[i] << endl;
 		cout << "--/*-/*-/*-/* " << checkOutDay[i] << endl;
 		cout << "calculated price : " << z << endl;
 		*/
+		
 	}
 
 	cout << "Total Price : " << totalPrice << endl;
