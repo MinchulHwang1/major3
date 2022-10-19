@@ -2,16 +2,16 @@
 #include<sstream>
 #include<string>
 
-//#include<>
+
 using namespace std;
 
 
 int dayToIndex(string day);
 double calculateCostOfRoom(const double rent[], int ciD, int coD);
-const int error = -1;
+const int errorValue = -1;
 
 int main() {
-	const double roomRate[6] = { 127.50, 128.25, 130.50, 150, 150, 162.50 };
+	const double roomRate[6] = { 127.50, 128.25, 130.50, 150, 150, 162.50 };     //Declare an array of double as requirements.
 	int i = 0;
 	int a = 4;
 	string attName[4] = { };
@@ -24,41 +24,7 @@ int main() {
 	double totalPrice = 0;
 
 
-	//에러값을 반환할때 0으로 반환하여 error가 뜨게해야함.
-	//에러 값을 반환할때 값으로 반환하는 것을 해야함(돈 계산)
-	//checkin - 금토 들어갔을때 에러
-	//check out - 일월화수 들어갔을때 에러 - 완료
-	//check in/out이 다 목요일일때 에러 - 완료
-	//계산값을 변경해야함
-
-	/*
-	for (i = 0; i < a; i++) {
-
-		getline(cin, attName[i]); 
-		
-		arName = attName[i];
-		if (arName != "") {   //If there is no name in the attName array  
-			getline(cin, checkInDay[i]);
-			getline(cin, checkOutDay[i]);
-			ciD = dayToIndex(checkInDay[i]);
-			coD = dayToIndex(checkOutDay[i]);
-			calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
-		
-			cout << "Attendee name is : " <<  attName[i] << endl;
-			cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
-			cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
-			cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
-			cout << endl;
-			
-		}
-		else {
-			cout << "Error! Input next Name" << endl;
-			error;
-		}
-	}
-	*/
-
-
+	
 	for (i = 0; i < a; i++) {
 		cout << "Insert Attendee's name : ";
 		getline(cin, attName[i]);
@@ -77,8 +43,8 @@ int main() {
 
 			switch (ciD)
 			{
-			case error:case 5: case 6:
-				cout << "Error : Missing the meeting" << endl;
+			case errorValue:case 5: case 6:
+				cout << "Error : Invalid check-in day" << endl;
 				cout << endl;
 				break;
 
@@ -97,11 +63,8 @@ int main() {
 
 
 				default:
-					cout << endl;
 					calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
-					cout << "Attendee name is : " << attName[i] << endl;
-					cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
-					cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
+					cout << "** Attendee name is : " << attName[i] << " **" << endl;
 					cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
 					cout << endl;
 					totalPrice += calculatedPrice;
@@ -117,18 +80,17 @@ int main() {
 				
 				switch (coD) {
 				case 0: case 1: case 2: case 3: case -1:
-					cout << "Error" << endl;
+					cout << "Error : Invalid check-out day" << endl;
+					cout << endl;
 					break;
 
 
 
 				default :
-					cout << endl;
+				
 					calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
 
-					cout << "Attendee name is : " << attName[i] << endl;
-					cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
-					cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
+					cout << "** Attendee name is : " << attName[i] << " **" << endl;
 					cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
 					cout << endl;
 					totalPrice += calculatedPrice;
@@ -136,41 +98,11 @@ int main() {
 
 				break;
 			}
-			/*
-			if (ciD != -1) {
-				cout << "Insert Check-Out Day : ";
-				getline(cin, checkOutDay[i]);
-				coD = dayToIndex(checkOutDay[i]);
-				if (coD != -1) {
-					calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
-					cout << "Attendee name is : " << attName[i] << endl;
-					cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
-					cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
-					cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
-					cout << endl;
-					totalPrice += calculatedPrice;
-				}
-				else {
-					cout << "Error!" << endl;
-				}
-			}
-			else {
-				cout << "Error : You insert wrong Check-In day" << endl;
-			}*/
-
-
-			//calculatedPrice = calculateCostOfRoom(roomRate, ciD, coD);
-			/*
-			cout << "Attendee name is : " << attName[i] << endl;
-			cout << "'" << attName[i] << "'s Check in day is : " << checkInDay[i] << endl;
-			cout << "'" << attName[i] << "'s Check out day is : " << checkOutDay[i] << endl;
-			cout << "'" << attName[i] << "'s calculated price : " << calculatedPrice << endl;
-			cout << endl;
-			*/
+			
 		}
 		else {
-			cout << "Error! Input next Name" << endl;
-			error;
+			cout << "Error : Missing name" << endl;
+			errorValue;
 		}
 	}
 
@@ -203,7 +135,7 @@ int dayToIndex(string day) {
 		return 6;
 	}
 	else {
-		return error;
+		return errorValue;
 	}
 }
 
@@ -211,10 +143,10 @@ double calculateCostOfRoom(const double rent[], int ciD, int coD) {
 	double total = 0;
 	
 	if (ciD > 4 || coD < 4) {
-		return error;
+		return errorValue;
 	}
 	else if (ciD == coD) {
-		return error;
+		return errorValue;
 	}
 	else {
 		for (ciD; ciD < coD; ciD++) {
